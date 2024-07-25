@@ -36,6 +36,10 @@
         const backgroundImage = new Image();
         backgroundImage.src = 'atari-logo.jpg';
 
+        backgroundImage.onload = function () {
+            startGame();
+        };
+
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         function playSound(frequency) {
@@ -177,8 +181,10 @@
             draw();
         }
 
-        let framePerSecond = 50;
-        setInterval(game, 1000 / framePerSecond);
+        function startGame() {
+            let framePerSecond = 50;
+            setInterval(game, 1000 / framePerSecond);
+        }
     </script>
 </body>
 
