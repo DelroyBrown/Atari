@@ -27,17 +27,27 @@
 <body>
     <canvas id="pongCanvas"></canvas>
     <script>
+        console.log("Script loaded");
+
         const canvas = document.getElementById('pongCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = 1000;
         canvas.height = 600;
 
+        console.log("Canvas setup");
+
         // Load the background image
         const backgroundImage = new Image();
-        backgroundImage.src = '/atari-logo.jpg';
+        backgroundImage.src = 'atari-logo.jpg';
+        console.log("Image src set:", backgroundImage.src);
 
-        backgroundImage.onload = function () {
+        backgroundImage.onload = function() {
+            console.log("Image loaded");
             startGame();
+        };
+
+        backgroundImage.onerror = function() {
+            console.error("Image failed to load");
         };
 
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -182,6 +192,7 @@
         }
 
         function startGame() {
+            console.log("Game started");
             let framePerSecond = 50;
             setInterval(game, 1000 / framePerSecond);
         }
